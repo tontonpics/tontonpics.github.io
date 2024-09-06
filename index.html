@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" style="--col-start: 11;">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ARNAUD SCHEID</title>
+</head>
+
+<body>    
+    <div class="cursor_wrapper">
+        <div class="left prev"></div>
+        <div class="right next"></div>
+    </div>
+
+    <div class="titre">
+        <a href="mailto:contact@arnaudsheid.com"><h1>ARNAUD SCHEID</h1></a>
+    </div>
+    <div class="grid" id="grid">
+        <div class="image" style="display: none;">	<img src="./images/SOMBRASDESONIDO_09.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/SOMBRASDESONIDO_04.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/02_WILL_0238.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/LOOK07_0512.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/01_LORI_PRESS_0584.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/LOOK08_0642.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/MACHINA01.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/05_TCHAP_MERCH_0491.jpg"></div>
+        <div class="image" style="display: none;">	<img src="./images/07_LAURINE_MERCH_0734.jpg"></div>
+
+
+    </div>
+    
+    <script>
+        
+        let allImgs = document.querySelectorAll('.image')
+        let images = document.querySelectorAll('.image img')
+        let counter = 0;
+        let prevImg = 0
+        let totalImgs = allImgs.length -1
+        let screenHeight = window.innerHeight
+
+        allImgs[0].style.display = "block"
+        document.documentElement.style.setProperty('--col-start', (Math.floor(Math.random() * 20)) + 1 )
+
+        function imgYPosition(currentImg) {
+            screenHeight = window.innerHeight
+
+            let imgHeight = currentImg.clientHeight
+            let diffSpace = screenHeight - imgHeight
+            let divideSpace = diffSpace / 20
+
+            let randYpos = divideSpace*(Math.floor(Math.random() * 19))
+
+            currentImg.style.transform = "translateY(" + randYpos + "px)" 
+        }  
+
+        function reportWindowSize(){
+            screenHeight = window.innerHeight
+        }
+
+        window.addEventListener('resize', reportWindowSize);
+
+        function next() {
+            counter++ ;
+            if(counter == allImgs.length){
+                prevImg == allImgs.length
+                allImgs[totalImgs].style.display = "none"
+            } else {
+                prevImg = counter - 1
+                allImgs[prevImg].style.display = "none"
+            }
+            if(counter == allImgs.length){
+                counter = 0
+            }
+            
+            allImgs[counter].style.display = "block"
+
+            let imgVisible = images[counter]
+            imgYPosition(imgVisible)
+            
+            document.documentElement.style.setProperty('--col-start', (Math.floor(Math.random() * 20)) + 1 )
+        }
+
+
+        function prev() {
+            if(counter == 0){
+                allImgs[counter].style.display = "none"
+                allImgs[totalImgs].style.display = "block"
+
+                counter = totalImgs
+            } else {
+                counter--
+                prevImg = counter + 1
+                allImgs[prevImg].style.display = "none"
+                allImgs[counter].style.display = "block"
+            }
+
+            let imgVisible = images[counter]
+            imgYPosition(imgVisible)
+            document.documentElement.style.setProperty('--col-start', (Math.floor(Math.random() * 20)) + 1 )
+        }
+
+
+        const nextbtn = document.querySelector('.next')
+        nextbtn.addEventListener("click", next)
+
+        const prevtbtn = document.querySelector('.prev')
+        prevtbtn.addEventListener("click", prev)
+
+
+        document.onkeydown = function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    prev()
+                    break;
+                case 39:
+                    next()
+                    break;
+            }
+        };
+        
+    </script>
+</body>
+
+</html>

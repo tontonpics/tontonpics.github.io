@@ -102,6 +102,23 @@ body {
     text-decoration: none;
     color: white; }
 
+.texture {
+    mix-blend-mode: darken;
+    position: absolute;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: repeat;
+  background-image: url('images/overlay.jpeg');
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(20, 1fr); }

@@ -56,6 +56,14 @@ body {
   background-color: white;
   margin: 0; }
 
+.parallax-wrap {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .cursor_wrapper {
   position: absolute;
   left: 0;
@@ -81,7 +89,6 @@ body {
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -90,17 +97,19 @@ body {
   text-align: center;
   text-transform: uppercase;
   font-family: "Whyte", sans-serif;
-  font-size: 10vw;
+  line-height: 2em;
+  font-size: 3dvh;
   color: white;
   mix-blend-mode: difference;
-  width: auto; }
+  width: auto; 
+}
   .titre h1 {
     pointer-events: none;
-    font-size: 10vw; }
+}
   .titre a {
-    font-size: 10vw;
     text-decoration: none;
-    color: white; }
+    color: white; 
+}
 
 .texture {
     mix-blend-mode: darken;
@@ -175,3 +184,5 @@ body {
       font-size: 1em;
       text-decoration: none;
       color: white; } }
+
+

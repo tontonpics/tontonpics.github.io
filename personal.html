@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" style="--col-start: 11;">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARNAUD SCHEID</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+
+</head>
+
+    <body>
+        <div class="topnav">
+            <a href="homepage.html">ARNAUD SCHEID</a>
+            <div class="topnav-right">
+                <a href="editorial.html">EDITORIAL</a><br>
+                <a style="padding-top: 10px;" href="personal.html">PERSONAL</a>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="img__wrap">
+                <img class="pics" src="./images/24-12-25_1782.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">WHERE I COME FROM.</p>
+                </div>
+            </div>
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/24-12-25_1792.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">WHERE I COME FROM.</p>
+                </div>
+            </div>
+
+            <div class="img__wrap">
+                <img class="pics" src="./images/24-12-25_1820.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">WHERE I COME FROM.</p>
+                </div>
+            </div>
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/B006519-R1-02-3.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">CORISCA 2024</p>
+                </div>
+            </div>
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/B008279-R1-05-6.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">CORISCA 2024</p>
+                </div>
+            </div>
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/B008281-R1-13-14.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">CORISCA 2024</p>
+                </div>
+            </div>  
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/C007990-R1-16-17.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">CORISCA 2024</p>
+                </div>
+            </div>
+            
+            
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/B008309-R1-11-11.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">CORISCA 2024</p>
+                </div>
+            </div>
+            
+            <div class="img__wrap">
+                <img class="pics" src="./images/B008311-R1-29-33.jpg" />
+                <div class="img__description_layer">
+                    <p class="img__description">CORISCA 2024</p>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+        <div class="botnav">
+            <a href="">CONTACT</a>
+            <div class="botnav-right">
+                <a href="">INSTAGRAM</a>
+            </div>
+        </div>    
+        
+        <script>
+        
+            // Make it so that ESCAPE key closes the overlay
+document.addEventListener('keydown', (e) => {
+	
+	switch (e.key) {
+			
+		case 'Escape':
+		case 'Esc':
+			window.location.hash = "#close";
+			break;
+			
+		case 'Left':
+		case 'ArrowLeft':
+			const currentEl = document.querySelector(window.location.hash);
+			if (!currentEl) return;
+
+			const prevEl = currentEl.previousElementSibling;
+			if (!prevEl) return;
+
+			window.location.hash = `#${prevEl.id}`;
+			
+			break;
+			
+		case 'Right':
+		case 'ArrowRight':
+			const currentEl2 = document.querySelector(window.location.hash);
+			if (!currentEl2) return;
+
+			const nextEl = currentEl2.nextElementSibling;
+			if (!nextEl) return;
+
+			window.location.hash = `#${nextEl.id}`;
+			
+			break;
+			
+		default:
+			return;
+			
+	}
+});
+            
+        </script>
+        
+    </body>
+</html>
+
+    
+    

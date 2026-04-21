@@ -1,3 +1,5 @@
+@import url('clash-display.css');
+
 @font-face {
   font-family: "Whyte";
   src: url(../fonts/Whyte-Regular.woff2) format("opentype"), url(../fonts/Whyte-Regular.woff) format("opentype"); }
@@ -96,7 +98,7 @@ body {
   z-index: 999;
   text-align: center;
   text-transform: uppercase;
-  font-family: "Whyte", sans-serif;
+  font-family: "ClashDisplay-Semibold";
   line-height: 2em;
   font-size: 3dvh;
   color: white;

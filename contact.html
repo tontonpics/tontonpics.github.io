@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Arnaud SCHEID</title>
+  <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+  <link href="https://fonts.cdnfonts.com/css/clash-display" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0a0a0a; --white: #ffffff; --gray: #888; --nav-h: 72px; }
+    body { font-family: 'Clash Display', sans-serif; background: var(--white); color: var(--black); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 100; background: var(--white); }
+    .nav-logo, .nav-back { font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: 0.06em; color: var(--black); text-decoration: none; text-transform: uppercase; }
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: calc(var(--nav-h) + 60px) 40px 80px; }
+    .contact-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+    .contact-value { font-size: clamp(18px, 3vw, 26px); font-weight: 500; letter-spacing: -0.01em; color: var(--black); text-decoration: none; }
+    footer { text-align: center; padding: 32px; font-size: 11px; letter-spacing: 0.12em; color: var(--gray); text-transform: uppercase; }
+    @media (max-width: 560px) { nav { padding: 0 20px; } main { padding: calc(var(--nav-h) + 40px) 20px 60px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Arnaud SCHEID</a>
+  <a class="nav-back" href="index.html">Portfolio</a>
+</nav>
+
+<main>
+  <div class="contact-wrapper">
+    <a class="contact-value" href="mailto:arnaud.scheid@email.com">contact@arnaudscheid.com</a>
+    <a class="contact-value" href="tel:+33600000000">+33 6 40 05 38 00</a>
+  </div>
+</main>
+
+<footer>© 2025 Arnaud SCHEID — Tous droits réservés</footer>
+
+</body>
+</html>

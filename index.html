@@ -1,138 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" style="--col-start: 11;">
-    
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="clash-display.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>ARNAUD SCHEID</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arnaud SCHEID — Photographe</title>
+  <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+  <link href="https://fonts.cdnfonts.com/css/clash-display" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0a0a0a; --white: #ffffff; --gray: #888; --nav-h: 72px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Clash Display', sans-serif; background: var(--white); color: var(--black); min-height: 100vh; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 100; background: var(--white); }
+    .nav-logo, .nav-contact { font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: 0.06em; color: var(--black); text-decoration: none; text-transform: uppercase; }
+    .gallery { display: flex; gap: 24px; padding: calc(var(--nav-h) + 32px) clamp(12px, calc((100vw - 600px) * 0.5), 25vh) 80px; align-items: flex-start; }
+    .gallery-col { display: flex; flex-direction: column; gap: 24px; flex: 1; min-width: 0; }
+    .gallery-item { cursor: pointer; overflow: hidden; }
+    .gallery-item img { width: 100%; display: block; }
+    @media (max-width: 700px) { .gallery-col:nth-child(3) { display: none; } }
+    @media (max-width: 480px) { nav { padding: 0 20px; } .gallery-col:nth-child(2) { display: none; } }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.92); z-index: 200; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; animation: fadein 0.3s ease; }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+    .lightbox img { max-width: 80vw; max-height: 85vh; object-fit: contain; cursor: default; }
+    .lightbox-close { position: absolute; top: 28px; right: 36px; font-size: 28px; color: var(--black); cursor: pointer; font-weight: 300; line-height: 1; font-family: sans-serif; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 28px; color: var(--black); cursor: pointer; font-weight: 300; font-family: sans-serif; padding: 16px; line-height: 1; user-select: none; }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+    footer { text-align: center; padding: 32px; font-size: 11px; letter-spacing: 0.12em; color: var(--gray); text-transform: uppercase; }
+  </style>
 </head>
+<body>
 
-<body>    
-    <div class="cursor_wrapper">
-        <div class="left prev"></div>
-        <div class="right next"></div>
-    </div>
+<nav>
+  <a class="nav-logo" href="index.html">Arnaud SCHEID</a>
+  <a class="nav-contact" href="contact.html">Contact</a>
+</nav>
 
-    <div class="titre">
-        <a href="mailto:contact@arnaudscheid.com"><h1>ARNAUD SCHEID</h1></a>
-        <a href="https://www.instagram.com/arnaudscheid" class="fa fa-instagram"></a>
-    </div>
-    <div class="grid" id="grid">
-        <div class="image" style="display: none;">	<img src="./images/02_Samuel_0260.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/NM_22.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/3.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/20260203_CASIO.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/20250614_TEST_LUU4091.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/250413_WILLIAM_EGOSHIT_0291.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/SET02_OUTFIT01_0025.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/LOOK04_0408.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/20260203_NB.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/02_Samuel_0227.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/CYZIA_0007.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/SOMBRASDESONIDO_11.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/SET01_OUTFIT02_0003.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/LISE03__0303.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/LOOK07_0495.jpg"></div>
-        <div class="image" style="display: none;">	<img src="./images/02_0238.jpg"></div>
-    </div>
-    
-    
-    <script>
-        
-        let allImgs = document.querySelectorAll('.image')
-        let images = document.querySelectorAll('.image img')
-        let counter = 0;
-        let prevImg = 0
-        let totalImgs = allImgs.length -1
-        let screenHeight = window.innerHeight
+<main class="gallery" id="gallery">
+  <div class="gallery-col" id="col-0"></div>
+  <div class="gallery-col" id="col-1"></div>
+  <div class="gallery-col" id="col-2"></div>
+</main>
 
-        allImgs[0].style.display = "block"
-        document.documentElement.style.setProperty('--col-start', (Math.floor(Math.random() * 20)) + 1 )
+<footer>© 2025 Arnaud SCHEID — Tous droits réservés</footer>
 
-        function imgYPosition(currentImg) {
-            screenHeight = window.innerHeight
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">✕</span>
+  <span class="lightbox-prev">&#8592;</span>
+  <img id="lightbox-img" src="" alt="Vue agrandie" />
+  <span class="lightbox-next">&#8594;</span>
+</div>
 
-            let imgHeight = currentImg.clientHeight
-            let diffSpace = screenHeight - imgHeight
-            let divideSpace = diffSpace / 20
+<script>
+const images = [
+   "./pics/img12.jpg",
+  "./pics/img26.jpg",
+  "./pics/img27.jpg",
+  "./pics/img3.jpg", 
+  "./pics/img6.jpg",
+  "./pics/img11.jpg",
+  "./pics/img2.jpg",
+  "./pics/img14.jpg",
+  "./pics/img4.jpg",
+  "./pics/img20.jpg",
+  "./pics/img28.jpg",
+  "./pics/img21.jpg",
+  "./pics/img9.jpg",
+  "./pics/img1.jpg",
+  "./pics/img30.jpg",
+  "./pics/img23.jpg",
+  "./pics/img22.jpg",
+  "./pics/img17.jpg",
+  "./pics/img5.jpg",
+  "./pics/img24.jpg",
+  "./pics/img19.jpg",
+  "./pics/img29.jpg",
+  "./pics/img15.jpg",
+  "./pics/img25.jpg",
+  "./pics/img18.jpg",
+  "./pics/img10.jpg",
+  "./pics/img8.jpg",
+  "./pics/img7.jpg",
+  "./pics/img16.jpg",
+];
 
-            let randYpos = divideSpace*(Math.floor(Math.random() * 19))
+const cols = [document.getElementById('col-0'), document.getElementById('col-1'), document.getElementById('col-2')];
 
-            currentImg.style.transform = "translateY(" + randYpos + "px)" 
-        }  
+images.forEach(function(src, i) {
+  const div = document.createElement('div');
+  div.className = 'gallery-item';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = 'Photo ' + (i + 1);
+  img.loading = 'lazy';
+  div.appendChild(img);
+  cols[i % 3].appendChild(div);
+});
+</script>
 
-        function reportWindowSize(){
-            screenHeight = window.innerHeight
-        }
-
-        window.addEventListener('resize', reportWindowSize);
-
-        function next() {
-            counter++ ;
-            if(counter == allImgs.length){
-                prevImg == allImgs.length
-                allImgs[totalImgs].style.display = "none"
-            } else {
-                prevImg = counter - 1
-                allImgs[prevImg].style.display = "none"
-            }
-            if(counter == allImgs.length){
-                counter = 0
-            }
-            
-            allImgs[counter].style.display = "block"
-
-            let imgVisible = images[counter]
-            imgYPosition(imgVisible)
-            
-            document.documentElement.style.setProperty('--col-start', (Math.floor(Math.random() * 20)) + 1 )
-        }
-
-
-        function prev() {
-            if(counter == 0){
-                allImgs[counter].style.display = "none"
-                allImgs[totalImgs].style.display = "block"
-
-                counter = totalImgs
-            } else {
-                counter--
-                prevImg = counter + 1
-                allImgs[prevImg].style.display = "none"
-                allImgs[counter].style.display = "block"
-            }
-
-            let imgVisible = images[counter]
-            imgYPosition(imgVisible)
-            document.documentElement.style.setProperty('--col-start', (Math.floor(Math.random() * 20)) + 1 )
-        }
-
-
-        
-        const nextbtn = document.querySelector('.next')
-        nextbtn.addEventListener("click", next)
-
-        const prevtbtn = document.querySelector('.prev')
-        prevtbtn.addEventListener("click", prev)
-
-
-        document.onkeydown = function(e) {
-            switch (e.keyCode) {
-                case 37:
-                    prev()
-                    break;
-                case 39:
-                    next()
-                    break;
-            }
-        };
-        
-    </script>
-
+<script src="lightbox.js"></script>
 
 </body>
-
 </html>

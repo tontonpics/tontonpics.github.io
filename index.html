@@ -14,12 +14,11 @@
     body { font-family: 'Clash Display', sans-serif; background: var(--white); color: var(--black); min-height: 100vh; overflow-x: hidden; }
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 100; background: var(--white); }
     .nav-logo, .nav-contact { font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: 0.06em; color: var(--black); text-decoration: none; text-transform: uppercase; }
-    .gallery { display: flex; gap: 24px; padding: calc(var(--nav-h) + 32px) clamp(12px, calc((100vw - 600px) * 0.5), 25vh) 80px; align-items: flex-start; }
+    .gallery { display: flex; gap: 24px; padding: calc(var(--nav-h) + 32px) clamp(12px, calc((100vw - 600px) * 0.5), 400px) 80px; align-items: flex-start; }
     .gallery-col { display: flex; flex-direction: column; gap: 24px; flex: 1; min-width: 0; }
     .gallery-item { cursor: pointer; overflow: hidden; }
     .gallery-item img { width: 100%; display: block; }
-    @media (max-width: 700px) { .gallery-col:nth-child(3) { display: none; } }
-    @media (max-width: 480px) { nav { padding: 0 20px; } .gallery-col:nth-child(2) { display: none; } }
+    @media (max-width: 480px) { nav { padding: 0 20px; } }
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.92); z-index: 200; align-items: center; justify-content: center; }
     .lightbox.open { display: flex; animation: fadein 0.3s ease; }
     @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
@@ -55,7 +54,7 @@
 
 <script>
 const images = [
-   "./pics/img12.jpg",
+  "./pics/img12.jpg",
   "./pics/img26.jpg",
   "./pics/img27.jpg",
   "./pics/img3.jpg", 
@@ -86,17 +85,43 @@ const images = [
   "./pics/img16.jpg",
 ];
 
-const cols = [document.getElementById('col-0'), document.getElementById('col-1'), document.getElementById('col-2')];
+function getColCount() {
+  if (window.innerWidth <= 480) return 1;
+  if (window.innerWidth <= 700) return 2;
+  return 3;
+}
 
-images.forEach(function(src, i) {
-  const div = document.createElement('div');
-  div.className = 'gallery-item';
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = 'Photo ' + (i + 1);
-  img.loading = 'lazy';
-  div.appendChild(img);
-  cols[i % 3].appendChild(div);
+function buildGallery() {
+  const gallery = document.getElementById('gallery');
+  const colCount = getColCount();
+  gallery.innerHTML = '';
+
+  const cols = [];
+  for (let i = 0; i < colCount; i++) {
+    const col = document.createElement('div');
+    col.className = 'gallery-col';
+    gallery.appendChild(col);
+    cols.push(col);
+  }
+
+  images.forEach(function(src, i) {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Photo ' + (i + 1);
+    img.loading = 'lazy';
+    div.appendChild(img);
+    cols[i % colCount].appendChild(div);
+  });
+}
+
+buildGallery();
+
+let resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(buildGallery, 150);
 });
 </script>
 
